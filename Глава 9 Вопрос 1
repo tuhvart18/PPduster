@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+ 
+// Определяем разные типы монстров как перечисление
+enum class MonsterType
+{
+	ogre,
+	dragon,
+	orc,
+	giant_spider,
+	slime
+};
+ 
+// Структура монстра представляет одного монстра
+struct Monster
+{
+	MonsterType type {};
+	std::string name {};
+	int health {};
+};
+ 
+// Возвращаем название типа монстра в виде строки
+// Поскольку это можно было бы использовать где-нибудь еще,
+// лучше сделать эту функцию отдельной
+std::string getMonsterTypeString(MonsterType type)
+{
+	switch (type)
+	{
+	case MonsterType::ogre:
+		return "Ogre";
+	case MonsterType::dragon:
+		return "Dragon";
+	case MonsterType::orc:
+		return "Orc";
+	case MonsterType::giant_spider:
+		return "Giant Spider";
+	case MonsterType::slime:
+		return "Slime";
+	}
+ 
+	return "Unknown";
+}
+ 
+// Распечатываем информацию о монстре
+void printMonster(Monster monster)
+{
+	std::cout << "This " << getMonsterTypeString(monster.type) <<
+		" is named " << monster.name <<
+		" and has " << monster.health << " health.\n";
+}
+ 
+int main()
+{
+	Monster ogre{ MonsterType::ogre, "Torg", 145 };
+	Monster slime{ MonsterType::slime, "Blurp", 23 };
+ 
+	printMonster(ogre);
+	printMonster(slime);
+ 
+	return 0;
+}
